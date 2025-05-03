@@ -1,0 +1,23 @@
+@import '../../variables.module';
+
+.articleList {
+
+
+    &__pagination {
+        justify-content: center;
+    }
+
+    &__loader {
+        position: absolute;
+        left: 50%;
+        top: 100px;
+        z-index: 999999;
+    }
+
+    &__error {
+        width: 400px;
+        margin: 20px auto 0;
+    }
+}
+
+

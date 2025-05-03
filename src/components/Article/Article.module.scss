@@ -1,0 +1,103 @@
+@import '../../variables.module';
+
+.article {
+    background-color: white;
+    width: 938px;
+    height: 140px;
+    margin: 26px auto 26px;
+    box-shadow: 0 4px 12px #00000026;
+    padding: 15px 16px 15px;
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title-likes {
+        display: flex;
+    }
+
+    &__label {
+        display: flex;
+        gap: 2px;
+
+    }
+
+    &__count-chek {
+        margin-top: 2px;
+    }
+
+    &__title {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 20px;
+        line-height: 28px;
+        margin-right: 13px;
+        color: $title;
+    }
+
+    &__count-chek{
+        font-size: 12px;
+        line-height: 22px;
+        letter-spacing: 0;
+        
+    }
+
+    &__autor {
+        margin: 0;
+    }
+
+    &__right-side {
+        display: flex;
+        align-items: center;
+    }
+
+    &__genres_tags {
+        border: 1px solid $bl50;
+        border-radius: 2px;
+        padding: 2px 5px;
+        color: $bl75;
+        font-size: 12px;
+        margin-right: 6px;
+
+    }
+
+    &__description{
+        margin-top: 8px;
+        font-size: 12px;
+        line-height: 22px;
+        letter-spacing: 0;
+        color: $bl75;
+        width: 682px;
+    }
+
+    &__autor-date {
+        margin-right: 12px;
+    }
+
+    &__autor {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    &__date {
+        font-size: 12px;
+        line-height: 22px;
+        color: $bl50;
+
+    }
+
+    &__checkbox {
+        appearance: none;
+        height: 16px;
+        content: url('heart.svg');
+        margin-left: 13px;
+        transform: translate(0px, 2px);
+    }
+
+    &__checkbox:checked {
+        content: url('red_heart.svg');
+    }
+   
+}
+
