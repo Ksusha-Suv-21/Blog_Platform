@@ -12,3 +12,10 @@ body {
 body:first-child {
    background-color: $back-color;
 }
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+}
