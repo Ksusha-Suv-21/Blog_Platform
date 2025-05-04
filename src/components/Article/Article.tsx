@@ -2,11 +2,6 @@
 import { Link } from 'react-router';
 import { ArticleType } from "../../types/ArticleInterfaces";
 import Markdown from "markdown-to-jsx";
-//import { useAppSelector } from '../../redux/store';
-//import { useAppSelector } from '../../redux/store';
-//import ReactMarkdown from 'react-markdown';
-//import remarkGfm from 'remark-gfm';
-//import { ArticleActions } from '../ArticleActions/ArticleActions'; //это чтобы потом сделать старницу, все у Al3x4ndr4-K
 
 
 import classes from './Article.module.scss';
@@ -17,9 +12,6 @@ interface BlogProps {
 }
   
   const Article: React.FC<BlogProps> = ({ article, isFullView = false  }) => {
-    //const { user } = useAppSelector((state) => state.user);
-    //const isAuthor = user?.username === article.author.username;
-   // const { currentArticle /*, isLoading, error */} = useAppSelector((state) => state.articles);
 
     return (
       <div className={classes.article}>
@@ -36,7 +28,7 @@ interface BlogProps {
                 <input
       
                   className={classes['article__checkbox']}
-                  onChange={(e) => (console.log(e))} //лайки пока не подключила как следуует . хороший пример Aleksey-arch my-blog-platform/src/components/ItemList/index.jsx
+                  onChange={(e) => (console.log(e))} 
                   type="checkbox"
                   id='heart'
 
@@ -89,4 +81,4 @@ interface BlogProps {
   );
 };
 
-  export default Article;
+export default Article;

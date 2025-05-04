@@ -53,4 +53,31 @@ export const getArticleList =
       throw error; 
     }
   }
+
+
+  export const apiBaseUrl = 'https://blog-platform.kata.academy/api';
+const token = localStorage.getItem('token');
+
+export const getArticleList = 
+ async (page: number): Promise<ArticleInterface> => {
+    try {
+      
+      const response = await axios.get<ArticleInterface>(
+        `${apiBaseUrl}/articles?&limit=5&offset=${page * 5 - 5}`,
+        {
+          headers: {
+            Authorization: `Token ${token}`, // Используйте шаблонную строку для добавления токена
+          },
+          params: {
+            page
+          }
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+      throw error; 
+    }
+  }
 */
