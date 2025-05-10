@@ -1,4 +1,4 @@
-import ArticleList from "../components/ArticleList";
+import ArticleList from "../../components/ArticleList";
 
 const Homepage = () => {
     return (

@@ -1,10 +1,11 @@
 import { Routes, Route} from 'react-router';
 
-import Layout from '../Layout';
-import  Homepage  from '../../pages/Homepage';
+import Layout from '../../pages/Layout';
+import  Homepage  from '../../pages/Homepage/Homepage';
 import ArticlePost from '../ArticlePost';
 
-import SignUp from '../SignUp';
+import LoginPage from '../../pages/LoginPage';
+import RegisterPage from '../../pages/RegisterPage';
 
 
 const App: React.FC = () => {
@@ -15,7 +16,8 @@ const App: React.FC = () => {
           <Route index element={<Homepage />} />
           <Route path="/articles" element={<Homepage />} /> 
           <Route path="/articles/:slug" element={<ArticlePost />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Route> 
       </Routes>
 

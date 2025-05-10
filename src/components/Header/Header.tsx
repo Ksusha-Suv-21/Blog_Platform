@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import classes from './Header.module.scss';
 
-
+// на удаление
 
 const Header: React.FC = () => {
   return (

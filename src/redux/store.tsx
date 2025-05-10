@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch, useSelector} from "react-redux"
 import ArticleReducer from './reducers/ArticleSlice'
+import UserReducer from './reducers/UserSlice'
 
 
   
 export const store = configureStore({
     reducer: { 
-        articles: ArticleReducer
+        articles: ArticleReducer,
+        user: UserReducer
     }
 
 })

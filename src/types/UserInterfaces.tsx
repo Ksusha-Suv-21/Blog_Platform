@@ -8,7 +8,7 @@ export interface User {
   
   export interface UserState {
     user: User | null;
-    status: 'idle' | 'loading' | 'succeeded' | 'failed';
+    isLoading: 'i' | 'loading' | 'succeeded' | 'failed';
     error: string | null;
     isInitializing: boolean;
   }

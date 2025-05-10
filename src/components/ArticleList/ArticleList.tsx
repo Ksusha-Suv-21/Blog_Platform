@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/store'
 import { useSearchParams } from 'react-router';
 
-import { Pagination, Alert, Spin } from 'antd'
+import { Alert, Spin } from 'antd'
+import { Pagination, Box } from '@mui/material';
 import { fetchArticles, setCurrentPage } from '../..//redux/reducers/ArticleSlice';
 import Article from '../Article/Article';
 import { ArticleType } from "../../types/ArticleInterfaces";
@@ -14,9 +15,12 @@ const ArticleList: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const { articles, isLoading, error, totalArticles } = useAppSelector((state) => state.articles);
-  const totalPages = Math.ceil(totalArticles / 5);
+ 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const totalPages = Math.ceil(totalArticles / 5);
   const currentPageFromParams = Number(searchParams.get('page')) || 1;
+
 
   useEffect(() => {
     dispatch(
@@ -27,7 +31,7 @@ const ArticleList: React.FC = () => {
     );
   }, [dispatch, currentPageFromParams]);
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (_: ChangeEvent<unknown>, page: number) => {
     setSearchParams({ page: page.toString() });
     dispatch(setCurrentPage(page));
   };
@@ -67,13 +71,23 @@ const ArticleList: React.FC = () => {
             {articles.map((article: ArticleType) => (
               <Article key={article.slug} article={article} />
             ))}
-
-              <Pagination //не работает
+            <Box
+                sx={{
+                    margin: "auto",
+                    width: "fit-content",
+                    alignItems: "center",
+                    
+                }}
+            >
+              <Pagination
                 className={classes['articleList__pagination']}
-                total={totalPages}
+                count={totalPages}
                 onChange={handlePageChange}
-                showSizeChanger={false}
+                page={currentPageFromParams}
+                shape="rounded"
+                color='primary'
               />
+            </Box>
           </>
         )}
       </div>
@@ -81,20 +95,6 @@ const ArticleList: React.FC = () => {
   );
 };
 
- export default ArticleList;
+export default ArticleList;
 
-  /*
-<Pagination 
-          total={totalPages * 10}
-          showSizeChanger={false}
-          currentPage={currentPage}
-
-          onChange={handlePageChange}
-
-          count={Math.ceil((data?.articlesCount || 0) / 5)} // Общее количество страниц
-
-          page={currentPage}
-          />
-  */
-
-        
+  

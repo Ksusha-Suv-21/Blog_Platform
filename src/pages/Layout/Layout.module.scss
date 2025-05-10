@@ -39,6 +39,43 @@
         cursor: pointer;
     }
 
+    &__create-art-btn {
+        color: $btn-green;
+        border: 1px solid $btn-green;
+        background-color: white;
+        font-size: 14px;
+        line-height: 22px;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin-right: 27px;
+    }
+
+    &__profile-btn {
+        display: flex;
+        align-items: center;
+    }
+
+    &__user-info {
+        display: flex;
+        align-items: center;
+        margin-right: 27px;
+    }
+
+    &__username {
+        font-size: 18px;
+        line-height: 28px;
+        margin-right: 13px;
+    }
+
+    &__logout {
+        font-size: 18px;
+        line-height: 28px;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 8px 18px;
+    }
+
 }
 
 a {

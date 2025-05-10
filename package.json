@@ -12,6 +12,10 @@
     "format": "prettier --write ./src"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@hookform/resolvers": "^5.0.1",
+    "@mui/material": "^7.0.2",
     "@reduxjs/toolkit": "^2.7.0",
     "@types/react-redux": "^7.1.34",
     "antd": "^5.24.8",
@@ -28,7 +32,8 @@
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
     "remark-gfm": "^4.0.1",
-    "sass": "^1.86.3"
+    "sass": "^1.86.3",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
@@ -64,7 +69,7 @@
       "git add ."
     ]
   },
-    "overrides": {
+  "overrides": {
     "eslint-config-airbnb": {
       "eslint": "^7.32.0 || ^8.2.0 || ^9.0.0"
     }

@@ -1,39 +1,39 @@
 @import '../../variables.module';
 
-.signUp {
+.sign {
     background-color: white;
     width: 384px;
-    height: 599px;
+    height: 100%;
     border-radius: 6px;
     box-shadow: 0 22px 106px #BABABA;
     margin: 59px auto 0;
-    padding: 48px 32px; 
+    padding: 42px 32px; 
+    
 
     &__title {
         font-size: 20px;
         line-height: 28px;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
-    &__label {
+
+    &__error {
+        margin: 0 auto 0;
+        color: $error;
+    }
+    
+    &__form {
         display: flex;
         flex-direction: column;
-  
+        gap: 25px;
+    }
+
+    &__chekbox-text{
         font-size: 14px;
         line-height: 22px;
     }
-
-    &__input {
-        color: $form;
-        font-size: 16px;
-        line-height: 24px;
-        padding: 8px 12px;
-        border: 1px solid $form;
-        border-radius: 4px;
-        margin-bottom: 20px;
-    }
-
+  
     &__label-chek-wrap {
         display: flex;
         color: $bl75;
@@ -41,7 +41,7 @@
 
     &__label-chek {
         width: 380px;
-        margin-top: 21px;
+        margin-top: 11px;
         padding-top: 8px;
         border-top: 1px solid rgb(232, 232, 232);
         display: flex;
@@ -53,7 +53,6 @@
 
     &__chekbox-box {
         margin-right: 8px;
-
     }
 
     &__btn {
@@ -63,7 +62,7 @@
         border-radius: 4px;
         width: 380px;
         height: 40px;
-        margin-top: 21px;
+        margin-top: 11px;
         font-size: 16px;
         line-height: 24px;
     }
@@ -78,5 +77,7 @@
     &__question-link {
         margin-left: 4px;
     }
+
 }
 
+ 
