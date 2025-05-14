@@ -1,8 +1,10 @@
+
+/*
 import { useNavigate } from 'react-router';
 import { useAppSelector } from '../../redux/store';
 import { favoriteArticleApi, unfavoriteArticleApi } from '../../services/articlesApi';
 //import { toast } from 'react-toastify';
-import { messagesConstant } from '../../utils/messages';
+//import { messagesConstant } from '../../utils/messages';
 
 import classes from './LikeButton.module.scss';
 
@@ -51,3 +53,4 @@ const LikeButton: React.FC<LikeButtonProps> = () => {
 export default LikeButton;
 
 
+*/
