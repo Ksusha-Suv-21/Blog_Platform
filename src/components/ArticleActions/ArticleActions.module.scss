@@ -1,0 +1,34 @@
+@import '../../variables.module';
+
+
+.btnActions {
+
+    &__delet {
+        height: 31px;
+        width: 78px;
+        background-color: white;
+        color: $btn_delete;
+        border: 1px solid $btn_delete;
+        border-radius: 5px;
+        padding: 4px 17px 5px 17px;
+        margin-left: 18px;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+
+    &__edit {
+        height: 31px;
+        width: 65px;
+        background-color: white;
+        color: $btn-green;
+        border: 1px solid $btn-green;
+        border-radius: 5px;
+        padding: 4px 19px 5px 19px;
+        margin-left: 12px;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 22px;
+    }
+}

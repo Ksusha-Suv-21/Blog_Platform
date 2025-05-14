@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ArticleType, ArticleFilters, ArticlesResponse } from "../types/ArticleInterfaces";
+import { ArticleType, ArticleFilters, ArticlesResponse, ICreateArticle } from "../types/ArticleInterfaces";
 
 
 export const apiBaseUrl = 'https://blog-platform.kata.academy/api';
@@ -38,6 +38,29 @@ export const fetchArticle = async (slug: string): Promise<{ article: ArticleType
 
 
 
+export const favoriteArticleApi = async (slug: string) => {
+  const response = await apiClient.post(`/articles/${slug}/favorite`);
+  return response.data;
+};
+
+export const unfavoriteArticleApi = async (slug: string) => {
+  const response = await apiClient.delete(`/articles/${slug}/favorite`);
+  return response.data;
+};
+
+export const createArticle = async (articleData: ICreateArticle): Promise<{ article: ArticleType }> => {
+  const response = await apiClient.post<{ article: ArticleType }>('/articles', { article: articleData });
+  return response.data;
+};
+
+export const updateArticle = async (slug: string, articleData: ICreateArticle): Promise<{ article: ArticleType }> => {
+  const response = await apiClient.put<{ article: ArticleType }>(`/articles/${slug}`, { article: articleData });
+  return response.data;
+};
+
+export const deleteArticle = async (slug: string): Promise<void> => {
+  await apiClient.delete(`/articles/${slug}`);
+};
   
 /*
 export const getArticleList = 

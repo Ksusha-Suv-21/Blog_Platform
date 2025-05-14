@@ -31,7 +31,7 @@ const Sign: React.FC<AuthFormProps> = ({ mode }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<AuthFormData>({
     resolver: yupResolver(mode === 'login' ? loginSchema : registerSchema),
   });
@@ -153,7 +153,7 @@ const Sign: React.FC<AuthFormProps> = ({ mode }) => {
           <>
             <p className={classes['sign__question']}>
               Don’t have an account?
-              <Link className={classes['sign__question-link']} to={`/register`}>
+              <Link className={classes['sign__question-link']} to={`/sign-up`}>
                 <span>Sign Up.</span>
               </Link>
             </p>
@@ -162,7 +162,7 @@ const Sign: React.FC<AuthFormProps> = ({ mode }) => {
           <>
             <p className={classes['sign__question']}>
               Already have an account?
-              <Link className={classes['sign__question-link']} to={`/login`}>
+              <Link className={classes['sign__question-link']} to={`/sign-in`}>
                 <span>Sign In.</span>
               </Link>
             </p>

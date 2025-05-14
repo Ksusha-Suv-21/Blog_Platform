@@ -46,7 +46,7 @@ export interface ArticleFilters {
 }
 
 
-export interface CreateArticleDTO {
+export interface ICreateArticle {
     title: string;
     description: string;
     body: string;

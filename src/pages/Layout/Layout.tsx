@@ -2,7 +2,7 @@ import { Link, Outlet, useNavigate} from 'react-router'
 import { useAppDispatch, useAppSelector } from '../../redux/store'
 import { logout } from '../../redux/reducers/UserSlice'
 import classes from './Layout.module.scss'
-import logo from './Rec.svg';
+import avatar from './Rec.svg';
 
  
 const Layout = () => {
@@ -31,14 +31,12 @@ const Layout = () => {
               </Link>
 
               <Link to="/profile">
-              <div className={classes['header__user-info']}>
-                <span className={classes['header__username']}>{user.username}</span>
+                <div className={classes['header__user-info']}>
+                  <span className={classes['header__username']}>{user.username}</span>
 
-                <img src={user.image || '/avatar.svg'} alt="Avatar" className={classes['header__user-img']} 
-                onError={(event) => {event.currentTarget.src = logo}} />
-
-                
-              </div>
+                  <img src={user.image || '/avatar.svg'} alt="Avatar" className={classes['header__user-img']} 
+                  onError={(event) => {event.currentTarget.src = avatar}} />
+                </div>
               </Link>
 
               <button className={classes['header__logout']} onClick={handleLogout}>Log Out</button>
@@ -46,10 +44,10 @@ const Layout = () => {
             </div>
             ) : (
             <>
-              <Link to="/login">
+              <Link to="/sign-in">
                 <button className={classes['header__sign-in-btn']}>Sign in</button>
                 </Link>
-              <Link to="/register">
+              <Link to="/sign-up">
                 <button className={classes['header__sign-up-btn']}>Sign up</button>
               </Link>
             </>
