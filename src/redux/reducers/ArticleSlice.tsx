@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { fetchArticle as fetchArticleApi, fetchArticlesApi } from "../../services/articlesApi"
 
 
-import { ArticleType,  ArticlesResponse, ArticlesState } from "../../types/ArticleInterfaces";
+import { ArticleType, ArticlesResponse, ArticlesState } from "../../types/ArticleInterfaces";
 
 
 interface FetchArticlesParams {

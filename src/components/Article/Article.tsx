@@ -1,22 +1,56 @@
-
 import { Link } from 'react-router';
 import { ArticleType } from "../../types/ArticleInterfaces";
 import Markdown from "markdown-to-jsx";
-
-//import { favoriteArticleApi, unfavoriteArticleApi } from '../../services/articlesApi';
-
+import { favoriteArticleApi, unfavoriteArticleApi } from '../../services/articlesApi';
 import { useAppSelector } from '../../redux/store';
 import { ArticleActions } from '../ArticleActions/ArticleActions';
 import classes from './Article.module.scss';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 interface BlogProps {
   article: ArticleType;
   isFullView?: boolean;
 }
   
-const Article: React.FC<BlogProps> = ({ article, isFullView = false  }) => {
+const Article: React.FC<BlogProps> = ({ article, isFullView = false }) => {
   const { user } = useAppSelector((state) => state.user);
   const isAuthor = user?.username === article.author.username;
+  const navigate = useNavigate();
+
+  const [favorited, setFavorited] = useState(article.favorited);
+  const [favoritesCount, setfavoritesCount] = useState(article.favoritesCount);
+  
+  const handleChangeLike = async () => {
+    let favor
+
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
+    try {
+      if(favorited) {
+        favor = await unfavoriteArticleApi(article.slug);
+      } else {
+        favor = await favoriteArticleApi(article.slug)
+      }
+          
+        if(favor?.article) {
+          setFavorited(favor.article.favorited) 
+            if(favorited) {
+              setfavoritesCount(favoritesCount-1)
+            } else {
+              setfavoritesCount(favoritesCount+1)
+            }  
+        } else {
+          console.log(favor);
+        }
+
+      } catch (error) {
+        console.log(error)
+      } 
+  };
 
   return (
     <div className={classes.article}>
@@ -32,11 +66,12 @@ const Article: React.FC<BlogProps> = ({ article, isFullView = false  }) => {
             <label htmlFor='heart' className={classes['article__label']}>
               <input
                 className={classes['article__checkbox']}
-                onChange={(e) => (console.log(e))} 
+                onChange={() => handleChangeLike()}
                 type="checkbox"
                 id='heart'
+                checked={favorited} 
                 />
-              <span className={classes['article__count-chek']}>{article.favoritesCount}</span>
+              <span className={classes['article__count-chek']}>{favoritesCount}</span>
             </label>
           </div>
 

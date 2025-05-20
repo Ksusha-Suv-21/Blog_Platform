@@ -13,7 +13,7 @@ import LoginPage from '../../pages/LoginPage';
 import RegisterPage from '../../pages/RegisterPage';
 import ProfilePage from '../../pages/ProfilePage';
 import CreateArticlePage from '../../pages/CreateArticlePage';
-
+import EditArticlePage from '../../pages/EditArticlePage';
 
 
 const App: React.FC = () => {
@@ -54,6 +54,14 @@ const App: React.FC = () => {
             element={
               <PrivateRoute>
                 <CreateArticlePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/articles/:slug/edit"
+            element={
+              <PrivateRoute>
+                <EditArticlePage />
               </PrivateRoute>
             }
           />
