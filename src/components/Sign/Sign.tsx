@@ -70,7 +70,6 @@ const Sign: React.FC<AuthFormProps> = ({ mode }) => {
     }
   }
 
-
   return (
     <div className={classes.sign} onSubmit={handleSubmit(onSubmitHandle)}>
 
