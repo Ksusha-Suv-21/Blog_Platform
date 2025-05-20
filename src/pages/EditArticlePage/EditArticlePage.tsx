@@ -58,8 +58,4 @@ const EditArticlePage = () => {
 
 };
 
-export default () => (
-  <PrivateRoute>
-    <EditArticlePage />
-  </PrivateRoute>
-);
+export default EditArticlePage

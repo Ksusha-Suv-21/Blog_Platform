@@ -25,7 +25,7 @@ const Article: React.FC<BlogProps> = ({ article, isFullView = false }) => {
     let favor
 
     if (!user) {
-      navigate('/login');
+      navigate('/sign-in');
       return;
     }
 
