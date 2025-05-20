@@ -6,7 +6,7 @@ import { Spin } from 'antd'
 import { updateArticle } from '../../services/articlesApi';
 import { toast } from 'react-toastify';
 import { ICreateArticle } from '../../types/ArticleInterfaces';
-
+import { PrivateRoute } from '../../utils/PrivateRoute';
 import CreateArticle from "../../components/CreateArticle";
 import classes from './EditArticlePage.module.scss';
 
@@ -57,4 +57,8 @@ const EditArticlePage = () => {
 
 };
 
-export default EditArticlePage
+export default () => (
+  <PrivateRoute>
+    <EditArticlePage />
+  </PrivateRoute>
+);

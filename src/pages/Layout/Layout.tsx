@@ -38,9 +38,9 @@ const Layout = () => {
                   onError={(event) => {event.currentTarget.src = avatar}} />
                 </div>
               </Link>
-
-              <button className={classes['header__logout']} onClick={handleLogout}>Log Out</button>
-
+              <Link to="/">
+                <button className={classes['header__logout']} onClick={handleLogout}>Log Out</button>
+              </Link>
             </div>
             ) : (
             <>
