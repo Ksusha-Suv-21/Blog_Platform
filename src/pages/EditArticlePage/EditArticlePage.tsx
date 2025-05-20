@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 import { ICreateArticle } from '../../types/ArticleInterfaces';
 
 import CreateArticle from "../../components/CreateArticle";
-import { PrivateRoute } from '../../utils/PrivateRoute';
 import classes from './EditArticlePage.module.scss';
 
 const EditArticlePage = () => {
