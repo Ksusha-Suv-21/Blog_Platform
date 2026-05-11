@@ -1,65 +1,80 @@
-import { Link, Outlet, useNavigate} from 'react-router'
-import { useAppDispatch, useAppSelector } from '../../redux/store'
-import { logout } from '../../redux/reducers/UserSlice'
-import classes from './Layout.module.scss'
-import avatar from './Rec.svg';
+import { Link, Outlet, useNavigate } from "react-router";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { logout } from "../../redux/reducers/UserSlice";
+import classes from "./Layout.module.scss";
+import avatar from "./Rec.svg";
 
- 
 const Layout = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user} = useAppSelector((state) => state.user);
+  const { user } = useAppSelector((state) => state.user);
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/');
+    navigate("/");
   };
 
   return (
     <>
       <header className={classes.header}>
         <Link to="/">
-            <p className={classes['header__title']}>Realworld Blog</p>
+          <p className={classes["header__title"]}>Realworld Blog</p>
         </Link>
 
-
-        <div className={classes['header__button']}>
+        <div className={classes["header__button"]}>
           {user ? (
-            <div className={classes['header__profile-btn']}>
+            <div className={classes["header__profile-btn"]}>
               <Link to="/new-article">
-                <button className={classes['header__create-art-btn']}>Create article</button>
+                <button className={classes["header__create-art-btn"]}>
+                  Create article
+                </button>
               </Link>
 
               <Link to="/profile">
-                <div className={classes['header__user-info']}>
-                  <span className={classes['header__username']}>{user.username}</span>
+                <div className={classes["header__user-info"]}>
+                  <span className={classes["header__username"]}>
+                    {user.username}
+                  </span>
 
-                  <img src={user.image || '/avatar.svg'} alt="Avatar" className={classes['header__user-img']} 
-                  onError={(event) => {event.currentTarget.src = avatar}} />
+                  <img
+                    src={user.image || "/avatar.svg"}
+                    alt="Avatar"
+                    className={classes["header__user-img"]}
+                    onError={(event) => {
+                      event.currentTarget.src = avatar;
+                    }}
+                  />
                 </div>
               </Link>
               <Link to="/">
-                <button className={classes['header__logout']} onClick={handleLogout}>Log Out</button>
+                <button
+                  className={classes["header__logout"]}
+                  onClick={handleLogout}
+                >
+                  Log Out
+                </button>
               </Link>
             </div>
-            ) : (
+          ) : (
             <>
               <Link to="/sign-in">
-                <button className={classes['header__sign-in-btn']}>Sign in</button>
-                </Link>
+                <button className={classes["header__sign-in-btn"]}>
+                  Sign in
+                </button>
+              </Link>
               <Link to="/sign-up">
-                <button className={classes['header__sign-up-btn']}>Sign up</button>
+                <button className={classes["header__sign-up-btn"]}>
+                  Sign up
+                </button>
               </Link>
             </>
-            )}
+          )}
         </div>
-
       </header>
 
       <Outlet />
-
     </>
-  )
-}
+  );
+};
 
 export { Layout };

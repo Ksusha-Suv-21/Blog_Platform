@@ -1,9 +1,33 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { fetchArticle as fetchArticleApi, fetchArticlesApi } from "../../services/articlesApi"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  fetchArticle as fetchArticleApi,
+  fetchArticlesApi,
+} from "../../services/articlesApi";
 
+import {
+  //ArticleType,
+  //ArticlesResponse,
+  ArticlesState,
+} from "../../types/ArticleInterfaces";
 
-import { ArticleType, ArticlesResponse, ArticlesState } from "../../types/ArticleInterfaces";
-
+const mockArticles = Array.from({ length: 5 }).map((_, index) => ({
+  slug: `mock-${index + 1}`,
+  title: `Mock Article #${index + 1}`,
+  description: "Fallback article (API down)",
+  body: "Demo content",
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  tagList: ["mock"],
+  favorited: false,
+  favoritesCount: index,
+  id: String(index + 1),
+  author: {
+    username: "demo_user",
+    bio: null,
+    image: null,
+    following: false,
+  },
+}));
 
 interface FetchArticlesParams {
   limit: number;
@@ -19,22 +43,30 @@ const initialState: ArticlesState = {
   totalArticles: 0,
 };
 
-export const fetchArticles = createAsyncThunk<ArticlesResponse, FetchArticlesParams>(
-  'articles/fetchArticles',
-  async ({ limit, offset }) => {
-    return await fetchArticlesApi({ limit, offset });
-  }
+export const fetchArticles = createAsyncThunk(
+  "articles/fetchArticles",
+  async (params: FetchArticlesParams) => {
+    const response = await fetchArticlesApi(params);
+    return response;
+  },
 );
 
-export const fetchArticle = createAsyncThunk<ArticleType, string>('articles/fetchArticle', async (slug) => {
-  const response = await fetchArticleApi(slug);
+export const fetchArticle = createAsyncThunk(
+  "articles/fetchArticle",
+  async (slug: string) => {
+    try {
+      const response = await fetchArticleApi(slug);
+      return response.article;
+    } catch (e) {
+      console.warn("API failed → using mock article");
 
-  return response.article;
-});
-
+      return mockArticles[0];
+    }
+  },
+);
 
 const articlesSlice = createSlice({
-  name: 'articles',
+  name: "articles",
   initialState,
   reducers: {
     setCurrentPage(state, action) {
@@ -53,11 +85,8 @@ const articlesSlice = createSlice({
         state.totalArticles = action.payload.articlesCount;
         state.error = null;
       })
-      .addCase(fetchArticles.rejected, (state, action) => {
+      .addCase(fetchArticles.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.error.message || 'Failed to fetch articles';
-        state.articles = [];
-        state.totalArticles = 0;
       })
       .addCase(fetchArticle.pending, (state) => {
         state.isLoading = true;
@@ -66,9 +95,8 @@ const articlesSlice = createSlice({
         state.isLoading = false;
         state.currentArticle = action.payload;
       })
-      .addCase(fetchArticle.rejected, (state, action) => {
+      .addCase(fetchArticle.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.error.message || 'Failed to fetch article';
       });
   },
 });

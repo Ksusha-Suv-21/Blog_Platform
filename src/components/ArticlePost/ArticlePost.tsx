@@ -1,47 +1,45 @@
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { useParams } from "react-router";
+import { fetchArticle } from "../../redux/reducers/ArticleSlice";
+import { Alert, Spin } from "antd";
+import Article from "../Article/Article";
+import classes from "./ArticlePost.module.scss";
 
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { useParams } from 'react-router';
-import { fetchArticle } from '../../redux/reducers/ArticleSlice';
-import { Alert, Spin } from 'antd'
-import Article from '../Article/Article';
-import classes from './ArticlePost.module.scss';
+const ArticlePost: React.FC = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const dispatch = useAppDispatch();
+  const { currentArticle, isLoading } = useAppSelector(
+    (state) => state.articles,
+  );
 
-
-  const ArticlePost: React.FC = () => {
-    const { slug } = useParams<{ slug: string }>();
-    const dispatch = useAppDispatch();
-    const { currentArticle, isLoading, error } = useAppSelector((state) => state.articles);
-
-    useEffect(() => {
-      if (slug) {
-        dispatch(fetchArticle(slug));
-      }
-    }, [dispatch, slug]);
-
-    if (isLoading === true) {
-      return (
-        <div className={classes['articlePost__loader']}>
-          <Spin size="large"/>
-        </div>
-      );
+  useEffect(() => {
+    if (slug) {
+      dispatch(fetchArticle(slug));
     }
-  
-    if (error || !currentArticle) {
-      return (
-          <Alert 
-          description="Что-то пошло не так, попробуйте обновить страницу"
-          type="error"
-          className={classes['articlePost__error']}
-           />
-      );
-    }
+  }, [dispatch, slug]);
 
+  if (isLoading) {
     return (
-     <Article article={currentArticle} isFullView />
+      <div className={classes["articlePost__loader"]}>
+        <Spin size="large" />
+      </div>
     );
-  };
-  export default ArticlePost;
+  }
+
+  if (!currentArticle) {
+    return (
+      <Alert
+        description="Что-то пошло не так, попробуйте обновить страницу"
+        type="error"
+        className={classes["articlePost__error"]}
+      />
+    );
+  }
+
+  return <Article article={currentArticle} isFullView />;
+};
+export default ArticlePost;
 
 /*
  <div className={classes.articlePost}>
