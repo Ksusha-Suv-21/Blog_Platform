@@ -31,9 +31,6 @@ Live Demo: https://blog-platform-psi-three.vercel.app/
 ### Desktop
 ![Desktop screenshot](./screenshots/desktop.png)
 
-### Mobile
-![Mobile screenshot](./screenshots/mobile.png)
-
 ## Installation
 
 ```bash
@@ -43,3 +40,15 @@ npm run dev
 
 ## Author
 Kseniia Suvorova
+
+## Important note
+
+The backend API is currently returning HTTP 500 errors on articles endpoints.
+
+To keep the application functional, temporary mock data is used instead of real API responses.
+
+This affects:
+- Articles list (mocked with 5 items)
+- Single article page (mock fallback)
+
+This is a temporary solution and will be removed once the API is restored.
